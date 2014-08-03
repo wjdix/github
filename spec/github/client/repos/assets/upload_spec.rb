@@ -37,6 +37,22 @@ describe Github::Client::Repos::Releases::Assets, '#upload' do
     end
   end
 
+  context "with specified release endpoint" do
+    let(:body)   { fixture("repos/asset.json") }
+    let(:status) { 201 }
+    let(:endpoint) { 'https://a.ghe.endpoint.com/api/v3/uploads' }
+
+    before(:each) do
+      subject.upload_endpoint = endpoint
+    end
+      
+    
+    it "should upload the resource to the specified endpoint" do
+      subject.upload owner, repo, id, filepath, inputs
+      expect(a_post(path, endpoint).with(query: {name:'batman.jpg'})).to have_been_made
+    end
+  end
+
   it_should_behave_like 'request failure' do
     let(:requestable) { subject.upload owner, repo, id, filepath, inputs }
   end
