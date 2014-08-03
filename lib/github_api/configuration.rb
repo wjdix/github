@@ -23,6 +23,9 @@ module Github
     # The web endpoint used to connect to GitHub if none is set
     property  :site, default: 'https://github.com'.freeze
 
+    # The api endpoint used to upload to GitHub if none is set
+    property :upload_endpoint, default: 'https://uploads.github.com'.freeze
+
     # The default SSL configuration
     property  :ssl, default: {
       :ca_file => File.expand_path('../ssl_certs/cacerts.pem', __FILE__)

@@ -12,6 +12,8 @@ describe Github::Configuration do
 
   its(:endpoint) { should == 'https://api.github.com' }
 
+  its(:upload_endpoint) { should == 'https://uploads.github.com' }
+
   its(:site) { should == 'https://github.com' }
 
   its(:user_agent) { should =~ /Github Ruby Gem/ }
